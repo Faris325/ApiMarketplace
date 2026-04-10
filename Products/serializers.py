@@ -7,9 +7,8 @@ from rest_framework import serializers
 class ProductSerializer(serializers.ModelSerializer):
 
 	def create(self, validated_data):
-		price = validated_data.get("price")
 		product = Product.objects.create(**validated_data)
-		PriceHistory.objects.create(price= price, product=product)
+		PriceHistory.objects.create(price= product.price, product=product)
 
 		return product 
 
