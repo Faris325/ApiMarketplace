@@ -16,7 +16,6 @@ class ProductSerializer(serializers.ModelSerializer):
 		model = Product
 		fields = ("name", "category", "price", "quantity",)
 
-
 	def update(self, instance, validated_data):
 
 		old_price = instance.price
@@ -33,3 +32,4 @@ class ProductSerializer(serializers.ModelSerializer):
 			
 		
 		return instance
+	

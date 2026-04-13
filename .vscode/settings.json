@@ -1,0 +1,50 @@
+{
+    "git.autoRepositoryDetection": "subFolders", // VS Code ищет репозитории только в подпапках
+    "breadcrumbs.enabled": true, // Хлебные крошки
+
+    "python.languageServer": "Pylance", // Анализатор кода для Python
+    "python.analysis.typeCheckingMode": "off", // Отключает строгую проверку типов
+    "python.analysis.diagnosticMode": "openFilesOnly",  // Предупреждения и диагностика только для открытых файлов
+    "python.analysis.autoSearchPaths": true, // Pylance автоматически ищет пути к модулям проекта
+    "python.analysis.autoImportCompletions": true,  // Автодополнение будет предлагать автоматически импортируемые модули
+    "python.analysis.completeFunctionParens": true, // При выборе функции в автодополнении добавляет ()
+    "python.analysis.inlayHints.variableTypes": false,  // Подсказки типов переменных
+    "python.analysis.inlayHints.functionReturnTypes": false, // Подсказки для возвращаемых типов функций
+    "python.analysis.importFormat": "absolute", // Предпочитает абсолютные импорты
+    "python.analysis.enablePytestSupport": true, // Включает поддержку Pytest
+    "python.analysis.indexing": true, // Индексирование проекта для Pylance
+    "editor.inlineSuggest.enabled": false, // Отключает встроенные предложения редактора
+    
+    "python.analysis.packageIndexDepths": [
+        {
+            "name": "django",
+            "depth": 3,
+            "includeAllSymbols": true
+        }
+    ],
+
+    "emmet.includeLanguages": {  // Быстрое использование тегов django-html
+        "django-html": "html" 
+    },
+    "files.associations": { // Настройка распознавания файлов
+        "**/*.html": "html",
+        "**/templates/*/*.html": "django-html",
+        "**/templates/*/*/*.html": "django-html",
+        "**/templates/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+    "django.snippets.exclude": [   
+        "cms",
+        "wagtail"
+    ],
+
+    "[django-html]": {
+        "editor.defaultFormatter": "batisteo.vscode-django",
+        "breadcrumbs.showClasses": true,
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": true,
+            "strings": true
+        }
+    }
+}
