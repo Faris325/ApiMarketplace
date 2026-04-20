@@ -17,6 +17,7 @@ from django.db.models import Subquery
 from Products.models import Product
 from Products.models import PriceHistory
 from Products import serializers
+from Products.filters import ProductFilter
 
 class CustomPageNumberPaginator(PageNumberPagination):
     page_size = 10
@@ -27,12 +28,13 @@ class CustomPageNumberPaginator(PageNumberPagination):
 class ProductViewSet(viewsets.ModelViewSet):
 
     """
-    Используется для создания, изменения, добавления, удаления запсей 
+    Используется для создания, изменения, добавления, получения, удаления запсей 
     """
     queryset = Product.objects.all()
     serializer_class = serializers.ProductSerializer
     http_method_names = ['get', 'post', 'put', 'delete','patch']       
     pagination_class = CustomPageNumberPaginator
+    filterset_class = ProductFilter  # 
 
 
     @action(detail=True, methods=["get"])
