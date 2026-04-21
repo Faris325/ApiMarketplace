@@ -1,0 +1,8 @@
+Django==6.0
+djangorestframework==3.17.1
+djoser==2.3.3
+djangorestframework_simplejwt==5.5.1
+django-filter==25.2
+psycopg2-binary==2.9.11
+social-auth-app-django==5.8.0
+gunicorn==21.2.0

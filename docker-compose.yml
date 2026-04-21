@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:15
+    container_name: base
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    container_name: web_site
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+         condition: service_healthy
+    env_file:
+    - .env   
+
+
+
+

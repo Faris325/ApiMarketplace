@@ -36,7 +36,6 @@ class ProductViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'put', 'delete','patch']       
     pagination_class = CustomPageNumberPaginator
     filterset_class = ProductFilter
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
 
 
     @action(detail=True, methods=["get"])

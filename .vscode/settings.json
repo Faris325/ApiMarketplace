@@ -14,6 +14,7 @@
     "python.analysis.enablePytestSupport": true, // Включает поддержку Pytest
     "python.analysis.indexing": true, // Индексирование проекта для Pylance
     "editor.inlineSuggest.enabled": false, // Отключает встроенные предложения редактора
+    "python.terminal.useEnvFile": true,
     
     "python.analysis.packageIndexDepths": [
         {
