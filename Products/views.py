@@ -1,19 +1,16 @@
 from datetime import date
 
-from django.shortcuts import render
-from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.generics import UpdateAPIView
-from django.db.models import Avg, Sum, Max, Min, Count
-from django.db.models import Q
+from django.db.models import Avg
 from rest_framework import status
-from django.db.models import F, ExpressionWrapper, FloatField, DecimalField
+from django.db.models import F
+from django.db.models import DecimalField
+from django.db.models import ExpressionWrapper 
 from django.db.models import OuterRef
 from django.db.models import Subquery
-from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
 
 from Products.models import Product
 from Products.models import PriceHistory
@@ -21,15 +18,15 @@ from Products import serializers
 from Products.filters import ProductFilter
 
 class CustomPageNumberPaginator(PageNumberPagination):
+    """Пагинатор"""
     page_size = 10
     page_size_query_param = 'page_size'
     max_page_size = 100
 
 
 class ProductViewSet(viewsets.ModelViewSet):
-
     """
-    Используется для создания, изменения, добавления, получения, удаления запсей 
+    Используется для создания, изменения, добавления, получения, удаления запсей
     """
     queryset = Product.objects.all()
     serializer_class = serializers.ProductSerializer
@@ -40,7 +37,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["get"])
     def average_price(self, request, pk=None):
-        """Возврщает среднюю цену товара(можно дату в get параметрах указать) """
+        """Возврщает среднюю цену товара, возможно указание даты """
 
         start_str = request.query_params.get("start")
         end_str = request.query_params.get("end")
@@ -112,7 +109,8 @@ class ProductViewSet(viewsets.ModelViewSet):
                 second_price=Subquery(second_price)
             ).annotate(
                 price_change=ExpressionWrapper(
-                    (F("last_price") - F("second_price")) * 100 / F("second_price"),
+                    (F("last_price") - F("second_price")) 
+                    * 100 / F("second_price"),
                     output_field=DecimalField()
                 )
             ).order_by('-price_change')[:101]
