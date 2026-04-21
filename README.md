@@ -90,6 +90,13 @@ GET /api/v1/product/?date=2024-06-15
 # Комбинированный фильтр
 GET /api/v1/product/?category=Ноутбуки&price_min=1000&date_min=2024-01-01
 
+
+📊 Дополнительные методы (Products)
+Метод	URL	Описание
+GET	/api/v1/product/{id}/average_price/	📈 Средняя цена товара (можно указать диапазон дат)
+GET	/api/v1/product/{id}/price_change_percentage/	📉 Изменение цены товара в процентах
+GET	/api/v1/product/top_price_growth_products/	🚀 Топ товаров по росту цены
+
 -------------------------------------------------------
 
 
