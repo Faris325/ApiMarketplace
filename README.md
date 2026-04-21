@@ -125,6 +125,7 @@ docker compose up
 http://localhost:8000
 
 
+
 ### Примеры HTTP-запросов
 
 # Получить список товаров
