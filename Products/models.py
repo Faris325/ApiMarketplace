@@ -25,6 +25,7 @@ class PriceHistory(models.Model):
         db_table = "products_price_history"
 
 
+from django.contrib.auth.models import AbstractUser
 
 
 

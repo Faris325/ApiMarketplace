@@ -13,6 +13,7 @@ from rest_framework import status
 from django.db.models import F, ExpressionWrapper, FloatField, DecimalField
 from django.db.models import OuterRef
 from django.db.models import Subquery
+from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
 
 from Products.models import Product
 from Products.models import PriceHistory
@@ -34,7 +35,8 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.ProductSerializer
     http_method_names = ['get', 'post', 'put', 'delete','patch']       
     pagination_class = CustomPageNumberPaginator
-    filterset_class = ProductFilter  # 
+    filterset_class = ProductFilter
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
 
 
     @action(detail=True, methods=["get"])
