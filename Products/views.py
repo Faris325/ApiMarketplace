@@ -72,7 +72,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["get"])
     def price_change_percentage(self, request, pk=None):
-        """Возвращает среднюю цену на товар"""
+        """Возвращает насколько имзенилась цена """
 
         try:
             obj = Product.objects.get(id=pk)
